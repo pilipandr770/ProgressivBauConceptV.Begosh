@@ -69,51 +69,152 @@
 <!-- Welcome Chat Widget -->
 <div id="welcome-chat-widget">
     <button id="chat-toggle-btn" onclick="toggleWelcomeChat()">
-        <span class="chat-icon">💬</span>
-        <span class="chat-text">Hilfe?</span>
+        💬
     </button>
-    <div id="welcome-chat-window" style="display:none;">
-        <div id="welcome-chat-header">
-            <span>👋 Lisa - Ihre Assistentin</span>
-            <button onclick="toggleWelcomeChat()" style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
+    <div id="welcome-chat-window" class="welcome-chat-window">
+        <div class="welcome-chat-header">
+            <div class="header-content">
+                <div class="avatar">👋</div>
+                <div class="header-info">
+                    <h3>Lisa</h3>
+                    <span class="status">Online • Ihre Assistentin</span>
+                </div>
+            </div>
+            <button class="close-chat" onclick="toggleWelcomeChat()">&times;</button>
         </div>
-        <div id="welcome-chat-messages">
+        <div id="welcome-messages">
             <div class="message bot-message">
-                Hallo! Willkommen bei ProgressivBauConcept! 👋<br><br>
-                Ich bin Lisa, Ihre persönliche Assistentin. Wie kann ich Ihnen heute helfen?
+                <div class="message-content">
+                    <strong>Hallo! Willkommen bei ProgressivBauConcept! 👋</strong><br><br>
+                    Ich bin Lisa, Ihre persönliche Assistentin. Wie kann ich Ihnen heute helfen?
+                </div>
+                <button class="speak-btn" onclick="speakMessage(this)" title="Vorlesen">🔊</button>
             </div>
         </div>
-        <div id="welcome-chat-input">
-            <input type="text" id="welcome-message" placeholder="Ihre Nachricht...">
-            <button onclick="sendWelcomeMessage()">Senden</button>
+        <div class="welcome-chat-input">
+            <button id="voice-btn" class="voice-btn" onclick="toggleVoiceInput()" title="Sprachnachricht">
+                🎤
+            </button>
+            <input type="text" id="welcome-input" placeholder="Ihre Nachricht eingeben...">
+            <button id="send-welcome-btn" onclick="sendWelcomeMessage()">
+                ➤
+            </button>
         </div>
     </div>
 </div>
 
 <script>
+let recognition;
+let isRecording = false;
+let speechSynthesis = window.speechSynthesis;
+
+// Initialize Speech Recognition
+if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'de-DE'; // Default to German, will auto-detect
+    
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('welcome-input').value = transcript;
+        isRecording = false;
+        document.getElementById('voice-btn').innerHTML = '🎤';
+        document.getElementById('voice-btn').classList.remove('recording');
+    };
+    
+    recognition.onerror = function(event) {
+        console.error('Speech recognition error:', event.error);
+        isRecording = false;
+        document.getElementById('voice-btn').innerHTML = '🎤';
+        document.getElementById('voice-btn').classList.remove('recording');
+    };
+    
+    recognition.onend = function() {
+        isRecording = false;
+        document.getElementById('voice-btn').innerHTML = '🎤';
+        document.getElementById('voice-btn').classList.remove('recording');
+    };
+}
+
 function toggleWelcomeChat() {
     const chatWindow = document.getElementById('welcome-chat-window');
     const toggleBtn = document.getElementById('chat-toggle-btn');
     
-    if (chatWindow.style.display === 'none') {
-        chatWindow.style.display = 'flex';
+    chatWindow.classList.toggle('active');
+    
+    if (chatWindow.classList.contains('active')) {
         toggleBtn.style.display = 'none';
     } else {
-        chatWindow.style.display = 'none';
         toggleBtn.style.display = 'flex';
     }
 }
 
+function toggleVoiceInput() {
+    if (!recognition) {
+        alert('Spracherkennung wird in Ihrem Browser nicht unterstützt.');
+        return;
+    }
+    
+    if (isRecording) {
+        recognition.stop();
+        isRecording = false;
+        document.getElementById('voice-btn').innerHTML = '🎤';
+        document.getElementById('voice-btn').classList.remove('recording');
+    } else {
+        recognition.start();
+        isRecording = true;
+        document.getElementById('voice-btn').innerHTML = '⏹️';
+        document.getElementById('voice-btn').classList.add('recording');
+    }
+}
+
+function speakMessage(button) {
+    const messageContent = button.previousElementSibling.textContent;
+    
+    if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+        button.innerHTML = '🔊';
+        return;
+    }
+    
+    const utterance = new SpeechSynthesisUtterance(messageContent);
+    utterance.lang = 'de-DE';
+    utterance.rate = 0.9;
+    utterance.pitch = 1;
+    
+    button.innerHTML = '⏸️';
+    
+    utterance.onend = function() {
+        button.innerHTML = '🔊';
+    };
+    
+    speechSynthesis.speak(utterance);
+}
+
 function sendWelcomeMessage() {
-    const messageInput = document.getElementById('welcome-message');
+    const messageInput = document.getElementById('welcome-input');
     const message = messageInput.value.trim();
     
     if (!message) return;
     
     // Display user message
-    const messagesDiv = document.getElementById('welcome-chat-messages');
-    messagesDiv.innerHTML += `<div class="message user-message">${message}</div>`;
+    const messagesDiv = document.getElementById('welcome-messages');
+    const userMessageHTML = `
+        <div class="message user-message">
+            <div class="message-content">${message}</div>
+        </div>
+    `;
+    messagesDiv.insertAdjacentHTML('beforeend', userMessageHTML);
     messageInput.value = '';
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    
+    // Show typing indicator
+    const typingHTML = `<div class="typing-indicator" id="typing">
+        <span></span><span></span><span></span>
+    </div>`;
+    messagesDiv.insertAdjacentHTML('beforeend', typingHTML);
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
     
     // Send to backend
@@ -124,18 +225,37 @@ function sendWelcomeMessage() {
     })
     .then(response => response.json())
     .then(data => {
-        messagesDiv.innerHTML += `<div class="message bot-message">${data.response}</div>`;
+        // Remove typing indicator
+        const typing = document.getElementById('typing');
+        if (typing) typing.remove();
+        
+        // Add bot message with speak button
+        const botMessageHTML = `
+            <div class="message bot-message">
+                <div class="message-content">${data.response}</div>
+                <button class="speak-btn" onclick="speakMessage(this)" title="Vorlesen">🔊</button>
+            </div>
+        `;
+        messagesDiv.insertAdjacentHTML('beforeend', botMessageHTML);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     })
     .catch(error => {
-        messagesDiv.innerHTML += `<div class="message bot-message">Entschuldigung, ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.</div>`;
+        const typing = document.getElementById('typing');
+        if (typing) typing.remove();
+        
+        const errorHTML = `
+            <div class="message bot-message error">
+                <div class="message-content">Entschuldigung, ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.</div>
+            </div>
+        `;
+        messagesDiv.insertAdjacentHTML('beforeend', errorHTML);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     });
 }
 
 // Enter key support
 document.addEventListener('DOMContentLoaded', function() {
-    const input = document.getElementById('welcome-message');
+    const input = document.getElementById('welcome-input');
     if (input) {
         input.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -144,10 +264,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Auto-open after 3 seconds
+    // Auto-pulse after 3 seconds
     setTimeout(() => {
         const chatBtn = document.getElementById('chat-toggle-btn');
-        if (chatBtn && chatBtn.style.display !== 'none') {
+        if (chatBtn) {
             chatBtn.classList.add('pulse-animation');
         }
     }, 3000);
