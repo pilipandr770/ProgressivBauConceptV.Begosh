@@ -4,6 +4,7 @@ from .innen_agent import InnenAgent
 from .aussen_agent import AussenAgent
 from .elektro_agent import ElektroAgent
 from .projekt_agent import ProjektAgent
+from .welcome_agent import WelcomeAgent
 
 chat_bp = Blueprint('chat', __name__)
 
@@ -11,7 +12,8 @@ agents = {
     'innen': InnenAgent,
     'aussen': AussenAgent,
     'elektro': ElektroAgent,
-    'projekt': ProjektAgent
+    'projekt': ProjektAgent,
+    'welcome': WelcomeAgent
 }
 
 @chat_bp.route('/chat', methods=['POST'])

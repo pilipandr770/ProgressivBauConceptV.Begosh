@@ -65,4 +65,93 @@
     <li>✅ <strong>Festpreisgarantie</strong> – keine versteckten Kosten</li>
     <li>✅ <strong>Alles aus einer Hand</strong> – von Planung bis Schlüsselfertig</li>
 </ul>
+
+<!-- Welcome Chat Widget -->
+<div id="welcome-chat-widget">
+    <button id="chat-toggle-btn" onclick="toggleWelcomeChat()">
+        <span class="chat-icon">💬</span>
+        <span class="chat-text">Hilfe?</span>
+    </button>
+    <div id="welcome-chat-window" style="display:none;">
+        <div id="welcome-chat-header">
+            <span>👋 Lisa - Ihre Assistentin</span>
+            <button onclick="toggleWelcomeChat()" style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
+        </div>
+        <div id="welcome-chat-messages">
+            <div class="message bot-message">
+                Hallo! Willkommen bei ProgressivBauConcept! 👋<br><br>
+                Ich bin Lisa, Ihre persönliche Assistentin. Wie kann ich Ihnen heute helfen?
+            </div>
+        </div>
+        <div id="welcome-chat-input">
+            <input type="text" id="welcome-message" placeholder="Ihre Nachricht...">
+            <button onclick="sendWelcomeMessage()">Senden</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleWelcomeChat() {
+    const chatWindow = document.getElementById('welcome-chat-window');
+    const toggleBtn = document.getElementById('chat-toggle-btn');
+    
+    if (chatWindow.style.display === 'none') {
+        chatWindow.style.display = 'flex';
+        toggleBtn.style.display = 'none';
+    } else {
+        chatWindow.style.display = 'none';
+        toggleBtn.style.display = 'flex';
+    }
+}
+
+function sendWelcomeMessage() {
+    const messageInput = document.getElementById('welcome-message');
+    const message = messageInput.value.trim();
+    
+    if (!message) return;
+    
+    // Display user message
+    const messagesDiv = document.getElementById('welcome-chat-messages');
+    messagesDiv.innerHTML += `<div class="message user-message">${message}</div>`;
+    messageInput.value = '';
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    
+    // Send to backend
+    fetch('/chat', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({message: message, agent: 'welcome'})
+    })
+    .then(response => response.json())
+    .then(data => {
+        messagesDiv.innerHTML += `<div class="message bot-message">${data.response}</div>`;
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    })
+    .catch(error => {
+        messagesDiv.innerHTML += `<div class="message bot-message">Entschuldigung, ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.</div>`;
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    });
+}
+
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('welcome-message');
+    if (input) {
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendWelcomeMessage();
+            }
+        });
+    }
+    
+    // Auto-open after 3 seconds
+    setTimeout(() => {
+        const chatBtn = document.getElementById('chat-toggle-btn');
+        if (chatBtn && chatBtn.style.display !== 'none') {
+            chatBtn.classList.add('pulse-animation');
+        }
+    }, 3000);
+});
+</script>
+
 {% endblock %}
