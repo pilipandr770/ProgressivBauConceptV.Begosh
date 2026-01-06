@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Innenausbau – Professionelle Innenarbeiten in Frankfurt am Main</h1>
+
+<div class="gallery">
+    <img src="{{ url_for('static', filename='images/luxury5.png') }}" alt="Luxury Interior">
+    <img src="{{ url_for('static', filename='images/luxury6.png') }}" alt="Luxury Interior">
+</div>
+
+<p>ProgressivBauConcept ist Ihr zuverlässiger Partner für <strong>Innenausbau und Renovierungsarbeiten in Frankfurt am Main und Hessen</strong>. Wir realisieren hochwertige Innenarbeiten für Wohnungen, Häuser, Büros und Gewerbeobjekte – von einzelnen Maßnahmen bis zur kompletten Sanierung aus einer Hand.</p>
+
+<p>💡 <strong>Lassen Sie sich persönlich in unserem Bau-Boutique im Hermitage Frankfurt beraten!</strong> Unsere Innenausbau-Experten zeigen Ihnen Musterräume, Materialmuster und entwickeln gemeinsam mit Ihnen Ihr individuelles Raumkonzept. Buchen Sie jetzt Ihren kostenlosen Beratungstermin!</p>
+
+<h2>Unsere Leistungen im Bereich Innenausbau</h2>
+
+<h3>Trockenbau & Raumgestaltung</h3>
+<ul>
+    <li>Errichtung von Trennwänden und Raumkonzepten</li>
+    <li>Abgehängte Decken und Deckensysteme</li>
+    <li>Schallschutz- und Brandschutzlösungen</li>
+    <li>Modernisierung von Wohn- und Arbeitsräumen</li>
+</ul>
+
+<h3>Bodenarbeiten</h3>
+<ul>
+    <li>Parkettverlegung (Massiv- und Fertigparkett)</li>
+    <li>Vinyl- und Designboden</li>
+    <li>Laminat und Teppichboden</li>
+    <li>Untergrundvorbereitung und Bodensanierung</li>
+</ul>
+
+<h3>Fliesen- und Natursteinarbeiten</h3>
+<ul>
+    <li>Fliesenverlegung in Bad, Küche und Wohnbereich</li>
+    <li>Großformatfliesen und Feinsteinzeug</li>
+    <li>Wand- und Bodenfliesen</li>
+    <li>Reparatur und Erneuerung bestehender Flächen</li>
+</ul>
+
+<h3>Maler- und Oberflächenarbeiten</h3>
+<ul>
+    <li>Spachtel- und Putzarbeiten</li>
+    <li>Innenanstriche und Lackierungen</li>
+    <li>Tapezierarbeiten</li>
+    <li>Hochwertige Oberflächengestaltung</li>
+</ul>
+
+<h3>Badsanierung & Wohnungsrenovierung</h3>
+<ul>
+    <li>Komplette Badsanierung</li>
+    <li>Teil- und Komplettsanierungen von Wohnungen</li>
+    <li>Modernisierung nach Kundenwunsch</li>
+</ul>
+
+<p>👉 <strong>Innenausbau Frankfurt</strong>, <strong>Renovierung Frankfurt</strong>, <strong>Wohnung sanieren Hessen</strong> – wir stehen für Qualität, Termintreue und saubere Ausführung.</p>
+
+<div class="cta">
+    <h3>🏢 Besuchen Sie unseren Innenausbau-Showroom im Hermitage Frankfurt!</h3>
+    <p>Erleben Sie Materialmuster, inspirierende Raumkonzepte und lassen Sie sich von unseren Experten beraten. Wir planen gemeinsam Ihren Traumraum!</p>
+    <a href="/termin-buchen?context=innen" class="btn">Beratungstermin im Boutique buchen</a>
+    <a href="/kontakt?context=innen" class="btn">Kostenloses Angebot anfordern</a>
+</div>
+
+<div id="chat">
+    <div id="chat-messages"></div>
+    <div id="chat-input">
+        <input type="text" id="message" placeholder="Fragen Sie den Innenausbau-Agenten">
+        <button id="voice-btn" onclick="startVoiceInput()">🎤</button>
+        <button onclick="sendMessage('innen')">Senden</button>
+    </div>
+</div>
+
+<p>📍 Beratung und persönliche Termine in unserem Büro und Showroom in <strong>Frankfurt am Main (Hermitage Frankfurt)</strong>.</p>
+
+<p>ProgressivBauConcept – V. Begosh<br>
+Alles aus einer Hand. Von der Idee bis zur Umsetzung.</p>
+{% endblock %}

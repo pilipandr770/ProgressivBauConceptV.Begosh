@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Projektleitung & Komplettlösungen – Bauen und Renovieren ohne Stress</h1>
+
+<div class="gallery">
+    <img src="{{ url_for('static', filename='images/projekt2.png') }}" alt="Projektleitung Luxury">
+    <img src="{{ url_for('static', filename='images/projekt3.png') }}" alt="Projektleitung Luxury">
+</div>
+
+<p>Wir übernehmen die <strong>vollständige Projektleitung und Umsetzung von Bau- und Renovierungsprojekten</strong> – unabhängig von Größe, Umfang oder Komplexität. Ihr zentraler Ansprechpartner in Frankfurt am Main.</p>
+
+<p>📋 <strong>Projektplanung im Hermitage Frankfurt!</strong> Besuchen Sie unseren Bau-Boutique und besprechen Sie Ihr Bauvorhaben in entspannter Atmosphäre. Unsere Projektmanager erstellen gemeinsam mit Ihnen ein maßgeschneidertes Konzept – von der ersten Idee bis zur Schlüsselfertigübergabe!</p>
+
+<h2>Unsere Leistungen im Bereich Projektmanagement</h2>
+
+<h3>Planung & Beratung</h3>
+<ul>
+    <li>Individuelle Beratung</li>
+    <li>Bedarfsanalyse</li>
+    <li>Technische Planung</li>
+    <li>Kosten- und Terminplanung</li>
+</ul>
+
+<h3>Projekt- und Bauleitung</h3>
+<ul>
+    <li>Koordination aller Gewerke</li>
+    <li>Qualitätskontrolle</li>
+    <li>Dokumentation</li>
+    <li>Terminüberwachung</li>
+</ul>
+
+<h3>Komplettsanierung & Neubau</h3>
+<ul>
+    <li>Sanierung von Wohnungen, Häusern und Gewerbeobjekten</li>
+    <li>Umbauten und Modernisierung</li>
+    <li>Neubauprojekte</li>
+    <li>Schlüsselfertige Übergabe</li>
+</ul>
+
+<h3>Alles aus einer Hand</h3>
+<ul>
+    <li>Ein Vertrag</li>
+    <li>Ein Ansprechpartner</li>
+    <li>Volle Transparenz</li>
+    <li>Zuverlässige Umsetzung</li>
+</ul>
+
+<p>👉 <strong>Projektleitung Frankfurt</strong>, <strong>Bauleitung Hessen</strong>, <strong>Sanierung aus einer Hand</strong> – wir realisieren Ihre Idee von der Planung bis zur Fertigstellung.</p>
+
+<div class="cta">
+    <h3>🏗️ Ihr Bauvorhaben startet im Hermitage Frankfurt!</h3>
+    <p>Persönliche Projektberatung, transparente Kostenplanung und zuverlässige Umsetzung – alles aus einer Hand!</p>
+    <a href="/termin-buchen?context=projekt" class="btn">Projekt-Beratungstermin buchen</a>
+    <a href="/kontakt?context=projekt" class="btn">Unverbindliches Angebot anfordern</a>
+</div>
+    <a href="/kontakt?context=projekt" class="btn">Rückruf / Kontakt</a>
+</div>
+
+<div id="chat">
+    <div id="chat-messages"></div>
+    <div id="chat-input">
+        <input type="text" id="message" placeholder="Fragen Sie den Projekt-Agenten">
+        <button id="voice-btn" onclick="startVoiceInput()">🎤</button>
+        <button onclick="sendMessage('projekt')">Senden</button>
+    </div>
+</div>
+
+<p>📍 Beratung und persönliche Termine in unserem Büro und Showroom in <strong>Frankfurt am Main (Hermitage Frankfurt)</strong>.</p>
+
+<p>ProgressivBauConcept – V. Begosh<br>
+Alles aus einer Hand. Von der Idee bis zur Umsetzung.</p>
+{% endblock %}

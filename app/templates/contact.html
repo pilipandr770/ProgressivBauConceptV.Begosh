@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Kontakt / Rückruf</h2>
+<form method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+    <label for="phone">Telefon:</label>
+    <input type="tel" id="phone" name="phone" required><br>
+    <label for="email">E-Mail:</label>
+    <input type="email" id="email" name="email" required><br>
+    <label for="message">Nachricht:</label>
+    <textarea id="message" name="message"></textarea><br>
+    <input type="hidden" name="context" value="{{ context }}">
+    <button type="submit">Senden</button>
+</form>
+{% endblock %}

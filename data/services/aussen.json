@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Fassadenarbeiten",
+        "description": "Fassadensanierung und -gestaltung"
+    },
+    {
+        "name": "Dacharbeiten",
+        "description": "Dachreparaturen und -neubauten"
+    },
+    {
+        "name": "Außenanlagen",
+        "description": "Gärten und Außenbereiche"
+    }
+]

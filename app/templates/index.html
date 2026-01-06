@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="carousel">
+    <img id="carousel-image" src="{{ url_for('static', filename='images/luxury1.png') }}" alt="Luxury Renovation">
+    <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+    <button class="next" onclick="changeImage(1)">&#10095;</button>
+</div>
+
+<h2>Ihr Premium-Partner für Baudienstleistungen in Frankfurt am Main</h2>
+<p><strong>ProgressivBauConceptV.Begosh</strong> – Exzellenz in Innenausbau, Außenarbeiten, Elektrotechnik und Projektmanagement. Seit Jahren vertrauen Kunden aus Frankfurt, Hessen und Umgebung auf unsere handwerkliche Perfektion und individuellen Lösungen.</p>
+
+<p>✅ <strong>Besuchen Sie unseren exklusiven Bau-Boutique im Hermitage Frankfurt!</strong></p>
+<p>Lassen Sie sich persönlich beraten und entdecken Sie Maßgeschneiderte Lösungen für Ihr Traumobjekt. Unsere Experten nehmen sich Zeit für Sie – vereinbaren Sie noch heute einen unverbindlichen Beratungstermin!</p>
+
+<div class="cta">
+    <h3>📍 Besuchen Sie uns im Hermitage Frankfurt</h3>
+    <p><strong>Adresse:</strong> Hermitage Shopping Center, Frankfurt am Main</p>
+    <a href="/termin-buchen" class="btn">Jetzt Beratungstermin buchen</a>
+    <a href="/kontakt" class="btn">Kostenlose Rückrufanfrage</a>
+</div>
+
+<h2>Wählen Sie Ihren Bereich</h2>
+<div class="directions">
+    <a href="/innenausbau" class="card">
+        <img src="{{ url_for('static', filename='images/luxury4.png') }}" alt="Innenausbau" style="width:100%; border-radius:8px;">
+        <h3>Innenausbau</h3>
+        <p>Professionelle Innenausbauarbeiten</p>
+    </a>
+    <a href="/aussenarbeiten" class="card">
+        <img src="{{ url_for('static', filename='images/aussen1.png') }}" alt="Außenarbeiten" style="width:100%; border-radius:8px;">
+        <h3>Außenarbeiten</h3>
+        <p>Qualitätsvolle Außenarbeiten</p>
+    </a>
+    <a href="/elektro" class="card">
+        <img src="{{ url_for('static', filename='images/electro2.png') }}" alt="Elektro" style="width:100%; border-radius:8px;">
+        <h3>Elektro & Smart Home</h3>
+        <p>Moderne Elektrotechnik und Smart Home Lösungen</p>
+    </a>
+    <a href="/projektleitung" class="card">
+        <img src="{{ url_for('static', filename='images/projekt1.png') }}" alt="Projektleitung" style="width:100%; border-radius:8px;">
+        <h3>Projektleitung</h3>
+        <p>Kompetente Projektleitung für Ihr Bauvorhaben</p>
+    </a>
+</div>
+
+<div class="cta">
+    <h2>🏛️ Besuchen Sie unseren Bau-Boutique im Hermitage Frankfurt</h2>
+    <p>Erleben Sie exklusive Beratung auf höchstem Niveau! In unserem Showroom präsentieren wir Ihnen Musterlösungen, hochwertige Materialien und innovative Technologien. Unsere Fachberater entwickeln gemeinsam mit Ihnen das perfekte Konzept für Ihr Bauprojekt.</p>
+    <p><strong>📍 Hermitage Shopping Center, Frankfurt am Main</strong></p>
+    <div style="text-align:center; margin:1rem 0;">
+        <a href="https://www.google.com/maps/search/Hermitage+Shopping+Center+Frankfurt" target="_blank" style="display:inline-block; padding:1rem 2rem; background:#4285f4; color:white; text-decoration:none; border-radius:8px; font-weight:bold;">
+            📍 In Google Maps öffnen
+        </a>
+    </div>
+    <a href="/termin-buchen" class="btn">Jetzt Termin im Bau-Boutique buchen</a>
+    <a href="/kontakt" class="btn">Kostenlose Erstberatung anfordern</a>
+</div>
+
+<h2>Warum ProgressivBauConceptV.Begosh?</h2>
+<ul style="max-width:800px; margin:auto; text-align:left;">
+    <li>✅ <strong>15+ Jahre Erfahrung</strong> in Frankfurt und Hessen</li>
+    <li>✅ <strong>Persönliche Beratung</strong> in unserem exklusiven Bau-Boutique</li>
+    <li>✅ <strong>TÜV-geprüfte Qualität</strong> und Garantieleistungen</li>
+    <li>✅ <strong>Festpreisgarantie</strong> – keine versteckten Kosten</li>
+    <li>✅ <strong>Alles aus einer Hand</strong> – von Planung bis Schlüsselfertig</li>
+</ul>
+{% endblock %}

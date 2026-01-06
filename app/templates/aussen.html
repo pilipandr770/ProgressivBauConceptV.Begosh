@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Außenarbeiten – Bau- und Sanierungsarbeiten im Außenbereich</h1>
+
+<div class="gallery">
+    <img src="{{ url_for('static', filename='images/aussen2.png') }}" alt="Außenarbeiten Luxury">
+    <img src="{{ url_for('static', filename='images/aussen3.png') }}" alt="Außenarbeiten Luxury">
+</div>
+
+<p>Wir übernehmen sämtliche <strong>Außenarbeiten und Bauleistungen rund um Ihr Gebäude</strong> in Frankfurt am Main und Umgebung. Von Erdarbeiten bis zur fertigen Außenanlage – alles aus einer Hand.</p>
+
+<p>🏗️ <strong>Besuchen Sie uns im Hermitage Frankfurt!</strong> In unserem Bau-Boutique zeigen wir Ihnen Muster von Pflastersteinen, Terrassenbelag und erklären Ihnen alle Möglichkeiten für Ihre Außenanlage. Vereinbaren Sie jetzt einen persönlichen Beratungstermin!</p>
+
+<h2>Unsere Leistungen im Bereich Außenarbeiten</h2>
+
+<h3>Erd- und Baggerarbeiten</h3>
+<ul>
+    <li>Aushub- und Erdarbeiten</li>
+    <li>Vorbereitung von Baugrundstücken</li>
+    <li>Fundament- und Grabenarbeiten</li>
+</ul>
+
+<h3>Außenanlagen & Gestaltung</h3>
+<ul>
+    <li>Terrassenbau</li>
+    <li>Pflasterarbeiten und Wege</li>
+    <li>Einfahrten und Hofanlagen</li>
+    <li>Oberflächenbefestigungen</li>
+</ul>
+
+<h3>Abdichtungen & Sanierungen</h3>
+<ul>
+    <li>Bauwerksabdichtung</li>
+    <li>Feuchtigkeitsschutz</li>
+    <li>Balkonsanierung</li>
+    <li>Sockel- und Fassadenarbeiten</li>
+</ul>
+
+<h3>Abbruch- und Rückbauarbeiten</h3>
+<ul>
+    <li>Teilabbrüche</li>
+    <li>Rückbau im Bestand</li>
+    <li>Entsorgung und Container-Service</li>
+</ul>
+
+<p>👉 <strong>Außenarbeiten Frankfurt</strong>, <strong>Baggerarbeiten Hessen</strong>, <strong>Terrassenbau Frankfurt</strong> – fachgerecht, effizient und zuverlässig.</p>
+
+<div class="cta">
+    <h3>🏛️ Persönliche Beratung im Hermitage Frankfurt</h3>
+    <p>Sehen Sie Materialmuster, Referenzbilder und lassen Sie sich von unseren Außenbau-Profis beraten!</p>
+    <a href="/termin-buchen?context=aussen" class="btn">Beratungstermin vereinbaren</a>
+    <a href="/kontakt?context=aussen" class="btn">Kostenloses Angebot anfragen</a>
+</div>
+
+<div id="chat">
+    <div id="chat-messages"></div>
+    <div id="chat-input">
+        <input type="text" id="message" placeholder="Fragen Sie den Außenarbeiten-Agenten">
+        <button id="voice-btn" onclick="startVoiceInput()">🎤</button>
+        <button onclick="sendMessage('aussen')">Senden</button>
+    </div>
+</div>
+
+<p>📍 Beratung und persönliche Termine in unserem Büro und Showroom in <strong>Frankfurt am Main (Hermitage Frankfurt)</strong>.</p>
+
+<p>ProgressivBauConcept – V. Begosh<br>
+Alles aus einer Hand. Von der Idee bis zur Umsetzung.</p>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Elektro & Smart Home – Moderne Elektrotechnik aus einer Hand</h1>
+
+<div class="gallery">
+    <img src="{{ url_for('static', filename='images/electro3.png') }}" alt="Electro Luxury">
+    <img src="{{ url_for('static', filename='images/electro4.png') }}" alt="Electro Luxury">
+</div>
+
+<p>ProgressivBauConcept bietet umfassende <strong>Elektroinstallationen und Smart-Home-Lösungen in Frankfurt am Main</strong>. Wir verbinden klassische Elektrotechnik mit modernen, intelligenten Systemen.</p>
+
+<p>⚡ <strong>Smart Home Live erleben im Hermitage Frankfurt!</strong> In unserem Showroom demonstrieren wir Ihnen funktionierende Smart-Home-Systeme, Beleuchtungsszenarien und innovative Elektrolösungen. Lassen Sie sich von unseren Elektro-Experten persönlich beraten!</p>
+
+<h2>Unsere Leistungen im Bereich Elektro & Technik</h2>
+
+<h3>Elektroinstallation</h3>
+<ul>
+    <li>Neubau- und Altbauinstallation</li>
+    <li>Stromkreise und Verteiler</li>
+    <li>Beleuchtungssysteme</li>
+    <li>Hausanschlüsse</li>
+</ul>
+
+<h3>Smart Home Systeme</h3>
+<ul>
+    <li>Intelligente Lichtsteuerung</li>
+    <li>Heizungs- und Energiemanagement</li>
+    <li>Sicherheits- und Alarmsysteme</li>
+    <li>Gebäudeautomation</li>
+</ul>
+
+<h3>Netzwerke & Infrastruktur</h3>
+<ul>
+    <li>Breitbandausbau</li>
+    <li>Netzwerkverkabelung</li>
+    <li>Kommunikations- und Datentechnik</li>
+</ul>
+
+<h3>Photovoltaik & Energie</h3>
+<ul>
+    <li>Solaranlagen</li>
+    <li>Vorbereitung und Integration von PV-Systemen</li>
+    <li>Energieeffiziente Lösungen</li>
+</ul>
+
+<p>👉 <strong>Elektroinstallation Frankfurt</strong>, <strong>Smart Home Frankfurt</strong>, <strong>Photovoltaik Hessen</strong> – zukunftssichere Technik für Ihr Objekt.</p>
+
+<div class="cta">
+    <h3>💡 Smart Home Showroom im Hermitage Frankfurt</h3>
+    <p>Erleben Sie intelligente Haustechnik live! Unsere Experten zeigen Ihnen die Möglichkeiten moderner Gebäudetechnik.</p>
+    <a href="/termin-buchen?context=elektro" class="btn">Demo-Termin buchen</a>
+    <a href="/kontakt?context=elektro" class="btn">Kostenlose Elektro-Beratung</a>
+</div>
+
+<div id="chat">
+    <div id="chat-messages"></div>
+    <div id="chat-input">
+        <input type="text" id="message" placeholder="Fragen Sie den Elektro-Agenten">
+        <button id="voice-btn" onclick="startVoiceInput()">🎤</button>
+        <button onclick="sendMessage('elektro')">Senden</button>
+    </div>
+</div>
+
+<p>📍 Beratung und persönliche Termine in unserem Büro und Showroom in <strong>Frankfurt am Main (Hermitage Frankfurt)</strong>.</p>
+
+<p>ProgressivBauConcept – V. Begosh<br>
+Alles aus einer Hand. Von der Idee bis zur Umsetzung.</p>
+{% endblock %}

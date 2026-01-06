@@ -1,0 +1,7 @@
+# Google Search Console Verification
+# Замените XXXXXXXXXXXXXX на ваш код верификации от Google Search Console
+google-site-verification: XXXXXXXXXXXXXX
+
+# Bing Webmaster Tools Verification
+# Замените YYYYYYYYYYYY на ваш код верификации от Bing
+msvalidate.01: YYYYYYYYYYYY
