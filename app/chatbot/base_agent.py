@@ -4,7 +4,9 @@ from ..config import Config
 class BaseAgent:
     def __init__(self, direction):
         self.direction = direction
-        self.client = openai.OpenAI(api_key=Config.OPENAI_API_KEY) if Config.OPENAI_API_KEY else None
+        # OpenAI 0.28.x uses api_key directly, not client
+        if Config.OPENAI_API_KEY:
+            openai.api_key = Config.OPENAI_API_KEY
 
     def respond(self, message):
         # Basic fallback
@@ -14,9 +16,9 @@ class BaseAgent:
             return "Bitte kontaktieren Sie uns über das Kontaktformular."
         else:
             # Use OpenAI for response
-            if self.client:
+            if openai.api_key:
                 try:
-                    response = self.client.chat.completions.create(
+                    response = openai.ChatCompletion.create(
                         model="gpt-3.5-turbo",
                         messages=[
                             {"role": "system", "content": f"Du bist ein hilfreicher Assistent für {self.direction} bei ProgressivBauConcept in Frankfurt am Main. Antworte professionell und hilfreich. Wenn es um Themen außerhalb von {self.direction} geht, leite zum Projekt-Agenten weiter."},

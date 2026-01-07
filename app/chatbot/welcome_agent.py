@@ -64,9 +64,10 @@ ANTWORTE KURZ (max. 3-4 Sätze), sei herzlich, leite richtig weiter!
 
     def respond(self, message):
         """Override base respond to use custom system message"""
-        if self.client:
+        import openai
+        if openai.api_key:
             try:
-                response = self.client.chat.completions.create(
+                response = openai.ChatCompletion.create(
                     model="gpt-3.5-turbo",
                     messages=[
                         {"role": "system", "content": self.system_message},
@@ -80,4 +81,3 @@ ANTWORTE KURZ (max. 3-4 Sätze), sei herzlich, leite richtig weiter!
                 return f"Entschuldigung, ich hatte einen technischen Fehler. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt. (Fehler: {str(e)})"
         else:
             return "Hallo! Willkommen bei ProgressivBauConcept! 👋 Ich bin Lisa. Bitte konfigurieren Sie den OpenAI API-Schlüssel."
-

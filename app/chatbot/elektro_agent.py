@@ -48,13 +48,10 @@ ANTWORTE KURZ, nutze Emojis 💡, stelle Fragen, führe zur Demo!
 
     def respond(self, message):
         """Override base respond to use custom system message"""
-        if self.client:
+        import openai
+        if openai.api_key:
             try:
-                response = self.client.chat.completions.create(
-                    model="gpt-3.5-turbo",
-                    messages=[
-                        {"role": "system", "content": self.system_message},
-                        {"role": "user", "content": message}
+                response = openai.ChatCompletion.create(
                     ],
                     max_tokens=200,
                     temperature=0.8
