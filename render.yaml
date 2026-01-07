@@ -1,7 +1,7 @@
 services:
   - type: web
     name: progressivbauconcept
-    runtime: python
+    env: python
     buildCommand: pip install --no-cache-dir -r requirements.txt
     startCommand: gunicorn run:app
     envVars:
