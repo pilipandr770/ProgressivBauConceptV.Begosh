@@ -62,6 +62,22 @@ Du bist Lisa, die freundliche Welcome-Assistentin für ProgressivBauConceptV.Beg
 ANTWORTE KURZ (max. 3-4 Sätze), sei herzlich, leite richtig weiter!
 """
 
-    def is_relevant(self, message):
-        # Welcome agent handles everything on main page
-        return True
+    def respond(self, message):
+        """Override base respond to use custom system message"""
+        if self.client:
+            try:
+                response = self.client.chat.completions.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": self.system_message},
+                        {"role": "user", "content": message}
+                    ],
+                    max_tokens=200,
+                    temperature=0.8
+                )
+                return response.choices[0].message.content.strip()
+            except Exception as e:
+                return f"Entschuldigung, ich hatte einen technischen Fehler. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt. (Fehler: {str(e)})"
+        else:
+            return "Hallo! Willkommen bei ProgressivBauConcept! 👋 Ich bin Lisa. Bitte konfigurieren Sie den OpenAI API-Schlüssel."
+

@@ -45,21 +45,25 @@ Du bist Markus, der Außenbau-Spezialist für ProgressivBauConceptV.Begosh in Fr
 ANTWORTE PRÄGNANT, stelle Fragen und führe zum Termin!
 """
 
-    def is_relevant(self, message):
-        keywords = ['außenarbeiten', 'erdarbeiten', 'bagger', 'terrassen', 'pflaster', 'abdichtung', 'balkon']
-        return any(keyword in message.lower() for keyword in keywords)
-        try:
-            if self.client:
+    def respond(self, message):
+        """Override base respond to use custom system message"""
+        if self.client:
+            try:
                 response = self.client.chat.completions.create(
                     model="gpt-3.5-turbo",
                     messages=[
                         {"role": "system", "content": self.system_message},
                         {"role": "user", "content": message}
                     ],
-                    max_tokens=150
+                    max_tokens=200,
+                    temperature=0.8
                 )
                 return response.choices[0].message.content.strip()
-            else:
-                return super().respond(message)
-        except Exception as e:
-            return super().respond(message)
+            except Exception as e:
+                return f"Entschuldigung, technischer Fehler. Bitte kontaktieren Sie uns direkt: {str(e)}"
+        else:
+            return "Hallo! Ich bin Markus, Ihr Außenarbeiten-Experte. Bitte konfigurieren Sie den API-Schlüssel."
+
+    def is_relevant(self, message):
+        keywords = ['außenarbeiten', 'erdarbeiten', 'bagger', 'terrassen', 'pflaster', 'abdichtung', 'balkon']
+        return any(keyword in message.lower() for keyword in keywords)

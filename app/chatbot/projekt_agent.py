@@ -50,21 +50,25 @@ Du bist Sophia, die Projektmanagement-Direktorin für ProgressivBauConceptV.Bego
 ANTWORTE STRATEGISCH, stelle qualifizierende Fragen, baue Vertrauen auf, führe zum persönlichen Gespräch!
 """
 
-    def is_relevant(self, message):
-        # Projekt agent handles everything
-        return True
-        try:
-            if self.client:
+    def respond(self, message):
+        """Override base respond to use custom system message"""
+        if self.client:
+            try:
                 response = self.client.chat.completions.create(
                     model="gpt-3.5-turbo",
                     messages=[
                         {"role": "system", "content": self.system_message},
                         {"role": "user", "content": message}
                     ],
-                    max_tokens=150
+                    max_tokens=200,
+                    temperature=0.8
                 )
                 return response.choices[0].message.content.strip()
-            else:
-                return super().respond(message)
-        except Exception as e:
-            return super().respond(message)
+            except Exception as e:
+                return f"Entschuldigung, technischer Fehler. Bitte kontaktieren Sie uns direkt: {str(e)}"
+        else:
+            return "Hallo! Ich bin Sophia, Ihre Projektleitung-Expertin. Bitte konfigurieren Sie den API-Schlüssel."
+
+    def is_relevant(self, message):
+        # Projekt agent handles everything
+        return True
