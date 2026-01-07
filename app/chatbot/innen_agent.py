@@ -53,6 +53,10 @@ ANTWORTE KURZ (max. 4-5 Sätze), stelle Gegenfragen und führe zum Termin!
         if openai.api_key:
             try:
                 response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": self.system_message},
+                        {"role": "user", "content": message}
                     ],
                     max_tokens=200,
                     temperature=0.8
